@@ -4,10 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const { theme } = useTheme();
+  const pathname = usePathname();
+
   const [mounted, setMounted] = useState(false);
   const [isScrolledUp, setIsScrolledUp] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -34,6 +37,16 @@ export default function Navbar() {
   const logoSrc =
     theme === "dark" ? "/images/logo/logo2.png" : "/images/logo/logo1.png";
 
+  // warna highlight sesuai mode
+  const activeTextColor = theme === "dark" ? "text-pink-500" : "text-blue-500";
+  const activeBgColor = theme === "dark" ? "bg-pink-500" : "bg-blue-500";
+
+  const menuItems = [
+    { label: "WORKS", href: "/works" },
+    { label: "ABOUT", href: "/about" },
+    { label: "CONTACT", href: "/contact" },
+  ];
+
   return (
     <nav
       className={`fixed top-0 w-full bg-background text-foreground flex justify-between items-center px-6 md:px-16 py-4 md:py-6 z-50 shadow-md transition-transform duration-500 ease-in-out ${
@@ -53,22 +66,33 @@ export default function Navbar() {
 
       {/* Menu Desktop */}
       <div className="hidden md:flex gap-24 mr-40 text-xl font-light tracking-wide">
-        {["WORKS", "ABOUT", "CONTACT"].map((item) => (
-          <Link
-            key={item}
-            href={`/${item.toLowerCase()}`}
-            className="relative group"
-          >
-            <span className="hover:text-gray-400 transition-colors">
-              {item}
-            </span>
-            <span
-              className={`absolute left-0 -bottom-1 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${
-                theme === "dark" ? "bg-blue-400" : "bg-black"
-              }`}
-            ></span>
-          </Link>
-        ))}
+        {menuItems.map((item) => {
+          const isActive =
+            item.href === "/"
+              ? pathname === "/"
+              : pathname.startsWith(item.href);
+
+          return (
+            <Link key={item.label} href={item.href} className="relative group">
+              <span
+                className={`transition-colors ${
+                  isActive
+                    ? `${activeTextColor} font-semibold`
+                    : "hover:text-gray-400"
+                }`}
+              >
+                {item.label}
+              </span>
+              <span
+                className={`absolute left-0 -bottom-1 h-0.5 transition-all duration-300 ${
+                  isActive
+                    ? `w-full ${activeBgColor}`
+                    : `w-0 group-hover:w-full ${activeBgColor}`
+                }`}
+              ></span>
+            </Link>
+          );
+        })}
       </div>
 
       {/* Mobile Menu Button */}
@@ -83,16 +107,25 @@ export default function Navbar() {
       {/* Mobile Menu Drawer */}
       {menuOpen && (
         <div className="absolute top-full left-0 w-full bg-background shadow-md flex flex-col items-center py-6 gap-6 md:hidden transition-all duration-500 ease-in-out">
-          {["WORKS", "ABOUT", "CONTACT"].map((item) => (
-            <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
-              onClick={() => setMenuOpen(false)}
-              className="text-lg font-medium hover:text-gray-400 transition-colors"
-            >
-              {item}
-            </Link>
-          ))}
+          {menuItems.map((item) => {
+            const isActive =
+              item.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(item.href);
+
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className={`text-lg font-medium transition-colors ${
+                  isActive ? `${activeTextColor} font-semibold` : ""
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
       )}
     </nav>

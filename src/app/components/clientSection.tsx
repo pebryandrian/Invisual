@@ -158,7 +158,8 @@ export default function ClientSection() {
         {clients.map((client) => (
           <div
             key={client.id}
-            className="flex items-center justify-between gap-4 py-6 border-b-2 border-white/80"
+            className="flex items-center justify-between gap-4 py-6 border-b-2 border-foreground/20 dark:border-foreground/40"
+
           >
             {/* Logo + Nama */}
             <div className="flex items-center ml-12 gap-4">

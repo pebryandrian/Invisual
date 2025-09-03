@@ -86,28 +86,24 @@ export default function WorksSection() {
               </div>
 
               {/* Judul */}
-              <h3 className="mt-4 text-2xl font-bold text-foreground transition-colors duration-300 group-hover:[color:var(--hover-color)]">
-                {work.title}
-              </h3>
+            <h3 className="mt-4 text-3xl font-medium text-foreground transition-colors duration-300 group-hover:[color:var(--hover-color)]">
+              {work.title}
+            </h3>
 
-              {/* Kategori */}
-              <p className="text-foreground/80 transition-colors duration-300 group-hover:[color:var(--hover-color)]">
-                {work.category}
-              </p>
+            {/* Kategori */}
+            <p className="text-2xl mt-3 transition-colors duration-300 group-hover:[color:var(--hover-color)]">
+              {work.category}
+            </p>
 
-              {/* Deskripsi + Truncate */}
-              <p
-                className={`mt-2 text-base leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:[color:var(--hover-color)] ${
-                  isExpanded ? "" : "line-clamp-2"
-                }`}
-              >
-                {work.description}
-              </p>
+            {/* Deskripsi */}
+            <p className="mt-3 mb-2 text-xl leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:[color:var(--hover-color)] line-clamp-2">
+              {work.description}
+            </p>
 
               {/* Tombol Read more */}
               <button
                 onClick={() => toggleExpand(work.id)}
-                className="mt-1 text-sm font-medium transition-colors [color:var(--hover-color)] hover:underline"
+                className="mt-1 text-md font-medium transition-colors [color:var(--hover-color)] hover:underline"
               >
                 {isExpanded ? "Show less" : "Read more"}
               </button>
