@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 import Link from "next/link";
 
 const works = [
   {
     id: 1,
+    slug: "imasa", // 🔑 tambahkan slug sesuai dengan worksData
     title: "Imasa",
     category: "Fashion",
     description:
@@ -15,6 +15,7 @@ const works = [
   },
   {
     id: 2,
+    slug: "yno",
     title: "YNO",
     category: "Beauty",
     description:
@@ -23,22 +24,25 @@ const works = [
   },
   {
     id: 3,
-    title: "Kona Padel",
-    category: "Sports",
+    slug: "kona",
+    title: "KONA PADEL CLUB",
+    category: "Lifestyle",
     description:
       "Kona Padel emphasizes energy, motion, and strength through its visual identity. With playful elements and bold typography, it connects with the dynamic nature of the sport.",
     image: "/images/cover/kona.jpg",
   },
   {
     id: 4,
-    title: "FreshBite",
-    category: "Food",
+    slug: "asian",
+    title: "Asian Mood",
+    category: "Food & Beverages",
     description:
       "FreshBite is a food brand that embraces freshness and variety. Its packaging design highlights colorful ingredients, evoking appetite and authenticity.",
     image: "/images/cover/asian.jpg",
   },
   {
     id: 5,
+    slug: "casa",
     title: "Casa",
     category: "Beauty",
     description:
@@ -47,6 +51,7 @@ const works = [
   },
   {
     id: 6,
+    slug: "soar",
     title: "SOAR COLLECTIVE",
     category: "Entertainment",
     description:
@@ -56,36 +61,26 @@ const works = [
 ];
 
 export default function WorksSection() {
-  const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
-
-  const toggleExpand = (id: number) => {
-    setExpanded((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
   return (
     <section id="works" className="w-full px-6 md:px-20 py-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {works.map((work) => {
-          const isExpanded = expanded[work.id];
-          return (
-            <div
-              key={work.id}
-              className="group rounded-lg overflow-hidden transition-all duration-500"
-            >
-              {/* Gambar */}
-              <div className="relative w-full aspect-[16/9] overflow-hidden rounded">
-                <Image
-                  src={work.image}
-                  alt={work.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
+        {works.map((work) => (
+          <Link
+            key={work.id}
+            href={`/works/${work.slug}`} // 🔑 arahkan ke WorkDetailPage
+            className="group rounded-lg overflow-hidden transition-all duration-500 cursor-pointer"
+          >
+            {/* Gambar */}
+            <div className="relative w-full aspect-[16/9] overflow-hidden rounded">
+              <Image
+                src={work.image}
+                alt={work.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
 
-              {/* Judul */}
+            {/* Judul */}
             <h3 className="mt-4 text-3xl font-medium text-foreground transition-colors duration-300 group-hover:[color:var(--hover-color)]">
               {work.title}
             </h3>
@@ -99,24 +94,15 @@ export default function WorksSection() {
             <p className="mt-3 mb-2 text-xl leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:[color:var(--hover-color)] line-clamp-2">
               {work.description}
             </p>
-
-              {/* Tombol Read more */}
-              <button
-                onClick={() => toggleExpand(work.id)}
-                className="mt-1 text-md font-medium transition-colors [color:var(--hover-color)] hover:underline"
-              >
-                {isExpanded ? "Show less" : "Read more"}
-              </button>
-            </div>
-          );
-        })}
+          </Link>
+        ))}
       </div>
 
       {/* More Works Link */}
       <div className="flex justify-center mt-16">
         <Link
           href="/works"
-          className="text-4xl font-bold underline underline-offset-8 hover:text-[var(--hover-color)] transition-colors"
+          className="text-2xl font-semibold underline underline-offset-8 hover:text-[var(--hover-color)] transition-colors"
         >
           MORE WORKS
         </Link>

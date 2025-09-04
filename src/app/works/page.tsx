@@ -102,36 +102,48 @@ export default function WorksPage() {
         </p>
       </div>
 
-      {/* Works Grid */}
-      <div className="w-full px-6 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-6 pb-16">
-        {worksData.map((work) => (
-          <Link key={work.slug} href={`/works/${work.slug}`} className="group cursor-pointer">
-            {/* Gambar */}
-            <div className="relative w-full aspect-video overflow-hidden rounded-lg">
-              <img
-                src={work.image}
-                alt={work.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-
-            {/* Judul */}
-            <h3 className="mt-4 text-3xl font-medium text-foreground transition-colors duration-300 group-hover:[color:var(--hover-color)]">
-              {work.title}
-            </h3>
-
-            {/* Kategori */}
-            <p className="text-lg font-light mt-3 transition-colors duration-300 group-hover:[color:var(--hover-color)]">
-              {work.category}
-            </p>
-
-            {/* Deskripsi */}
-            <p className="mt-3 mb-10 text-2md leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:[color:var(--hover-color)] line-clamp-2">
-              {work.description}
-            </p>
-          </Link>
-        ))}
+{/* Works Grid */}
+<div className="w-full px-6 md:px-20 grid grid-cols-1 md:grid-cols-3 gap-6 pb-16">
+  {worksData.map((work) => (
+    <Link key={work.slug} href={`/works/${work.slug}`} className="group cursor-pointer">
+      {/* Thumbnail */}
+      <div className="relative w-full aspect-video overflow-hidden rounded-lg">
+        {work.image.endsWith(".mp4") ? (
+          <video
+            src={work.image}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          <img
+            src={work.image}
+            alt={work.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        )}
       </div>
+
+      {/* Judul */}
+      <h3 className="mt-4 text-3xl font-medium text-foreground transition-colors duration-300 group-hover:[color:var(--hover-color)]">
+        {work.title}
+      </h3>
+
+      {/* Kategori */}
+      <p className="text-lg font-light mt-3 transition-colors duration-300 group-hover:[color:var(--hover-color)]">
+        {work.category}
+      </p>
+
+      {/* Deskripsi */}
+      <p className="mt-3 mb-10 text-2md leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:[color:var(--hover-color)] line-clamp-2">
+        {work.description}
+      </p>
+    </Link>
+  ))}
+</div>
+
     </div>
   );
 }

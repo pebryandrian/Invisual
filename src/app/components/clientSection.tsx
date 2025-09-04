@@ -150,7 +150,7 @@ const clients = [
 export default function ClientSection() {
   return (
     <section id="clients" className="w-full px-6 md:px-20 py-10">
-      <h2 className="text-3xl md:text-4xl font-bold mb-8 underline mb-20 underline-offset-8">
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 underline md:mb-20 underline-offset-8">
         Selected Client
       </h2>
 
@@ -158,11 +158,11 @@ export default function ClientSection() {
         {clients.map((client) => (
           <div
             key={client.id}
-            className="flex items-center justify-between gap-4 py-6 border-b-2 border-foreground/20 dark:border-foreground/40"
+            className="flex items-center justify-between gap-4 py-3 border-b-2 border-foreground/20 dark:border-foreground/40"
 
           >
             {/* Logo + Nama */}
-            <div className="flex items-center ml-12 gap-4">
+            <div className="flex items-center ml-5 md:ml-12 gap-4">
               
                 <Image
                   src={client.logo}
