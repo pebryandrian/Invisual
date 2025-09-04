@@ -1,6 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 const teamMembers = [
   { name: "Tryan Permana", role: "CEO", image: "/images/team/p1.webp" },
@@ -14,6 +17,10 @@ const teamMembers = [
 ];
 
 export default function AboutSection() {
+  const [showAll, setShowAll] = useState(false);
+
+  const displayedTeam = showAll ? teamMembers : teamMembers.slice(0, 4);
+
   return (
     <div className="bg-background text-foreground">
       {/* Banner */}
@@ -45,25 +52,47 @@ export default function AboutSection() {
       <section className="max-w-6xl mx-auto px-6 py-16">
         <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 justify-items-center">
-          {teamMembers.map((person, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center space-y-3">
-              <div className="relative w-48 h-48 overflow-hidden rounded-lg ">
-                <Image
-                  src={person.image}
-                  alt={person.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 128px, 160px"
-                />
-              </div>
-              <div>
-                <p className="font-medium">{person.name}</p>
-                <p className="text-sm text-muted-foreground">{person.role}</p>
-              </div>
-            </div>
-          ))}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10 justify-items-center">
+          <AnimatePresence>
+            {displayedTeam.map((person, idx) => (
+              <motion.div
+                key={person.name}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 30 }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                className="flex flex-col items-center text-center space-y-4"
+              >
+                <div className="relative w-40 h-40 sm:w-44 sm:h-44 lg:w-48 lg:h-48 overflow-hidden rounded-xl shadow-md bg-gray-300 dark:bg-gray-700">
+                  <Image
+                    src={person.image}
+                    alt={person.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 160px, (max-width: 1024px) 176px, 192px"
+                  />
+                </div>
+                <div>
+                  <p className="font-semibold text-lg">{person.name}</p>
+                  <p className="text-sm text-muted-foreground">{person.role}</p>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
+
+        {/* Tombol Load More */}
+        {!showAll && (
+          <div className="flex justify-center mt-10">
+            <button
+              onClick={() => setShowAll(true)}
+              className="p-2 rounded-full hover:bg-muted transition"
+              aria-label="Lihat lebih banyak anggota tim"
+            >
+              <ChevronDown className="w-8 h-8 text-muted-foreground animate-bounce" />
+            </button>
+          </div>
+        )}
       </section>
 
       {/* Services Section */}
@@ -71,7 +100,6 @@ export default function AboutSection() {
         <h2 className="text-3xl font-bold text-center mb-12">Services</h2>
 
         <div className="grid md:grid-cols-3 gap-10">
-          {/* Branding */}
           <div>
             <h3 className="font-semibold text-lg mb-3">BRANDING</h3>
             <ul className="space-y-1 text-muted-foreground">
@@ -87,8 +115,6 @@ export default function AboutSection() {
               <li>Custom Font / Typography</li>
             </ul>
           </div>
-
-          {/* Graphic Design */}
           <div>
             <h3 className="font-semibold text-lg mb-3">GRAPHIC DESIGN</h3>
             <ul className="space-y-1 text-muted-foreground">
@@ -104,8 +130,6 @@ export default function AboutSection() {
               <li>Web Development</li>
             </ul>
           </div>
-
-          {/* Illustration */}
           <div>
             <h3 className="font-semibold text-lg mb-3">ILLUSTRATION</h3>
             <ul className="space-y-1 text-muted-foreground">
