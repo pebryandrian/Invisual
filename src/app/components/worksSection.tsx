@@ -86,12 +86,12 @@ export default function WorksSection() {
             </h3>
 
             {/* Kategori */}
-            <p className="text-2xl mt-3 transition-colors duration-300 group-hover:[color:var(--hover-color)]">
+            <p className="text-lg mt-3 transition-colors duration-300 group-hover:[color:var(--hover-color)]">
               {work.category}
             </p>
 
             {/* Deskripsi */}
-            <p className="mt-3 mb-2 text-xl leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:[color:var(--hover-color)] line-clamp-2">
+            <p className="mt-3 mb-2  leading-relaxed text-foreground/70 transition-colors duration-300 group-hover:[color:var(--hover-color)] line-clamp-2">
               {work.description}
             </p>
           </Link>

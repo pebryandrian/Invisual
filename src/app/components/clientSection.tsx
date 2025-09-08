@@ -149,7 +149,7 @@ const clients = [
 
 export default function ClientSection() {
   return (
-    <section id="clients" className="w-full px-6 md:px-20 py-10">
+    <section id="clients" className="w-full px-6 md:px-20 py-10 md:pb-40">
       <h2 className="text-3xl md:text-4xl font-bold mb-8 underline md:mb-20 underline-offset-8">
         Selected Client
       </h2>
@@ -173,7 +173,7 @@ export default function ClientSection() {
                 />
               
               <div className="ml-4">
-                <h3 className="text-2xl font-bold mb-3">{client.name}</h3>
+                <h3 className="text-2xl font-semibold mb-3">{client.name}</h3>
                 <p className="text-base text-foreground/70">{client.service}</p>
               </div>
             </div>

@@ -46,7 +46,7 @@ export default function Footer() {
       {/* Konten utama */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">
         {/* Tagline */}
-        <div className="text-2xl md:text-3xl font-medium leading-snug">
+        <div className="text-2xl md:text-4xl font-medium leading-snug">
           We help brands look <br />
           good, feel relevant, and <br />
           be recognizable.
@@ -61,7 +61,7 @@ export default function Footer() {
                 href="mailto:invibusiness@invisual.studio"
                 className="hover:underline"
               >
-                invibusiness@invisual.studio
+                business@invisual.studio
               </a>
             </p>
             <p className="text-base">

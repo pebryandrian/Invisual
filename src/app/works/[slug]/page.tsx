@@ -83,7 +83,7 @@ export default function WorkDetailPage({ params }: Props) {
       <section className="w-full px-6 md:px-20 py-16">
         {/* Title + Year */}
         <div className="flex justify-between items-start mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold">{title}</h1>
+          <h1 className="text-4xl md:text-5xl font-normal">{title}</h1>
           {year && <p className="text-2xl md:text-3xl font-semibold">{year}</p>}
         </div>
 
@@ -94,7 +94,7 @@ export default function WorkDetailPage({ params }: Props) {
             {scope.length > 0 && (
               <div>
                 <p className="text-foreground/50 mb-1">Scope of work</p>
-                <p className="font-medium">{scope.join(", ")}</p>
+                <p className="font-medium md:mb-18">{scope.join(", ")}</p>
               </div>
             )}
             {industry && (
@@ -152,7 +152,7 @@ export default function WorkDetailPage({ params }: Props) {
                     alt={`${title} ${i + 1}`}
                     width={1920}
                     height={1080}
-                    className="w-full h-auto object-cover rounded-lg"
+                    className="w-full h-auto object-cover "
                   />
                 )}
               </div>

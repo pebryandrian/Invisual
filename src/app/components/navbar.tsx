@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const { theme } = useTheme();
@@ -18,26 +19,26 @@ export default function Navbar() {
 
   useEffect(() => setMounted(true), []);
 
-  // handle hide/show on scroll
+  // hide/show navbar on scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setIsScrolledUp(false);
-      } else {
-        setIsScrolledUp(true);
-      }
+      setIsScrolledUp(window.scrollY <= lastScrollY);
       setLastScrollY(window.scrollY);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  // lock scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "auto";
+  }, [menuOpen]);
+
   if (!mounted) return null;
 
   const logoSrc =
     theme === "dark" ? "/images/logo/logo2.png" : "/images/logo/logo1.png";
 
-  // warna highlight sesuai mode
   const activeTextColor = theme === "dark" ? "text-pink-500" : "text-blue-500";
   const activeBgColor = theme === "dark" ? "bg-pink-500" : "bg-blue-500";
 
@@ -47,25 +48,31 @@ export default function Navbar() {
     { label: "CONTACT", href: "/contact" },
   ];
 
+  const socialLinks = [
+    { label: "Instagram", href: "https://instagram.com" },
+    { label: "LinkedIn", href: "https://linkedin.com" },
+    { label: "Behance", href: "https://behance.net" },
+  ];
+
   return (
     <nav
-      className={`fixed top-0 w-full bg-background text-foreground flex justify-between items-center px-6 md:px-16 py-4 md:py-6 z-50 shadow-md transition-transform duration-500 ease-in-out ${
+      className={`fixed top-0 w-full bg-background text-foreground flex justify-between items-center px-6 md:px-16 py-4 md:py-6 z-50 shadow-md transition-transform duration-500 ${
         isScrolledUp ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       {/* Logo */}
-      <Link href="/" className="flex items-center ml-4 md:ml-24">
+      <Link href="/" className="flex items-center ml-4 ">
         <Image
           src={logoSrc}
           alt="Invisual Logo"
-          width={180}
-          height={80}
+          width={140}
+          height={60}
           priority
         />
       </Link>
 
-      {/* Menu Desktop */}
-      <div className="hidden md:flex gap-24 mr-40 text-xl font-light tracking-wide">
+      {/* Desktop Menu */}
+      <div className="hidden md:flex gap-36 mr-16 text-lg font-light tracking-wide">
         {menuItems.map((item) => {
           const isActive =
             item.href === "/"
@@ -89,7 +96,7 @@ export default function Navbar() {
                     ? `w-full ${activeBgColor}`
                     : `w-0 group-hover:w-full ${activeBgColor}`
                 }`}
-              ></span>
+              />
             </Link>
           );
         })}
@@ -104,30 +111,75 @@ export default function Navbar() {
         {menuOpen ? <X size={28} /> : <Menu size={28} />}
       </button>
 
-      {/* Mobile Menu Drawer */}
-      {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-background shadow-md flex flex-col items-center py-6 gap-6 md:hidden transition-all duration-500 ease-in-out">
-          {menuItems.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href);
-
-            return (
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "100%" }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+          className="fixed top-0 left-0 w-full h-screen bg-background text-foreground flex flex-col p-6 md:hidden z-40"
+        >
+          {/* Header: Logo + Close Button */}
+          <div className="flex justify-between items-center">
+            <Image
+              src={logoSrc}
+              alt="Invisual Logo"
+              width={160}
+              height={70}
+              priority
+            />
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="text-3xl font-light"
+            >
+              ✕
+            </button>
+          </div>
+        
+          {/* Menu Items */}
+          <div className="flex flex-col gap-16 mt-12 text-4xl font-light tracking-wide">
+            {menuItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className={`text-lg font-medium transition-colors ${
-                  isActive ? `${activeTextColor} font-semibold` : ""
-                }`}
+                className="hover:opacity-70 transition-opacity"
               >
                 {item.label}
               </Link>
-            );
-          })}
-        </div>
-      )}
+            ))}
+          </div>
+        
+          {/* Bottom Section */}
+          <div className="mt-auto flex flex-col items-center gap-8 mb-8">
+            {/* Social Links */}
+            <div className="flex justify-center gap-10 text-base">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  className="hover:opacity-70 transition-opacity"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+        
+            {/* Contact */}
+            <div className="text-sm text-center leading-relaxed">
+              <p className="font-semibold">Business:</p>
+              <p>info@invisual.com</p>
+              <p>+62 812 3456 7890</p>
+            </div>
+          </div>
+        </motion.div>
+        
+
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
