@@ -1,17 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { worksData } from "@/app/data/worksData";
-
-// Lightbox
+import { worksData, type Work } from "@/data/worksData";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>; // ✅ sesuai Next.js 15
 }
 
 interface CustomSlide {
@@ -19,39 +17,21 @@ interface CustomSlide {
 }
 
 export default function WorkDetailPage({ params }: Props) {
-  const [slug, setSlug] = useState<string | null>(null);
+  // ✅ Perbaikan Next.js 15: unwrap params
+  const { slug } = React.use(params);
+
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
 
-  // ✅ unwrap slug di dalam useEffect
-  useEffect(() => {
-    params.then((p) => setSlug(p.slug));
-  }, [params]);
-
-  if (!slug) return <div className="p-10">Loading...</div>;
-
-  const workIndex = worksData.findIndex((w) => w.slug === slug);
+  const workIndex = worksData.findIndex((w: Work) => w.slug === slug);
   if (workIndex === -1) return notFound();
 
   const work = worksData[workIndex];
+  const { title, image, year, description, industry, scope = [], team = [], gallery = [] } = work;
 
-  const {
-    title,
-    image,
-    year,
-    description,
-    industry,
-    scope = [],
-    team = [],
-    gallery = [],
-  } = work;
-
-  // ✅ prev & next project (loop)
-  const prevWork =
-    worksData[(workIndex - 1 + worksData.length) % worksData.length];
+  const prevWork = worksData[(workIndex - 1 + worksData.length) % worksData.length];
   const nextWork = worksData[(workIndex + 1) % worksData.length];
 
-  // ✅ convert gallery ke slides bertipe CustomSlide
   const slides: CustomSlide[] = gallery.map((src) => ({ src }));
 
   return (
@@ -59,14 +39,7 @@ export default function WorkDetailPage({ params }: Props) {
       {/* Hero */}
       <div className="relative w-full overflow-hidden">
         {image.endsWith(".mp4") ? (
-          <video
-            src={image}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-auto object-cover"
-          />
+          <video src={image} autoPlay muted loop playsInline className="w-full h-auto object-cover" />
         ) : (
           <Image
             src={image}
@@ -80,7 +53,7 @@ export default function WorkDetailPage({ params }: Props) {
       </div>
 
       {/* Content */}
-      <section className="w-full px-6 md:px-20 py-16">
+      <section className="w-full px-6 md:px-20 py-8">
         {/* Title + Year */}
         <div className="flex justify-between items-start mb-12">
           <h1 className="text-4xl md:text-5xl font-normal">{title}</h1>
@@ -89,12 +62,11 @@ export default function WorkDetailPage({ params }: Props) {
 
         {/* Info */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-2 items-start mb-16">
-          {/* Scope & Industry */}
           <div className="space-y-8 text-sm md:text-base">
             {scope.length > 0 && (
               <div>
                 <p className="text-foreground/50 mb-1">Scope of work</p>
-                <p className="font-medium md:mb-18">{scope.join(", ")}</p>
+                <p className="font-medium">{scope.join(", ")}</p>
               </div>
             )}
             {industry && (
@@ -105,7 +77,6 @@ export default function WorkDetailPage({ params }: Props) {
             )}
           </div>
 
-          {/* Team */}
           {team.length > 0 && (
             <div className="text-sm md:text-base">
               <p className="text-foreground/50 mb-2">Team</p>
@@ -119,7 +90,6 @@ export default function WorkDetailPage({ params }: Props) {
             </div>
           )}
 
-          {/* Description */}
           <div>
             <p className="text-lg md:text-xl leading-relaxed">{description}</p>
           </div>
@@ -138,21 +108,14 @@ export default function WorkDetailPage({ params }: Props) {
                 }}
               >
                 {src.endsWith(".mp4") ? (
-                  <video
-                    src={src}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-auto rounded-lg"
-                  />
+                  <video src={src} autoPlay muted loop playsInline className="w-full h-auto rounded-lg" />
                 ) : (
                   <Image
                     src={src}
                     alt={`${title} ${i + 1}`}
                     width={1920}
                     height={1080}
-                    className="w-full h-auto object-cover "
+                    className="w-full h-auto object-cover"
                   />
                 )}
               </div>
@@ -160,17 +123,11 @@ export default function WorkDetailPage({ params }: Props) {
           </div>
         )}
 
-        {/* Prev / Next Navigation */}
+        {/* Prev / Next */}
         <div className="flex flex-col sm:flex-row justify-between items-center mt-20 gap-10">
-          {/* Prev Work */}
           {prevWork && (
-            <Link
-              href={`/works/${prevWork.slug}`}
-              className="flex items-center gap-4 group"
-            >
-              <span className="text-3xl transition-transform group-hover:-translate-x-1">
-                ←
-              </span>
+            <Link href={`/works/${prevWork.slug}`} className="flex items-center gap-4 group">
+              <span className="text-3xl transition-transform group-hover:-translate-x-1">←</span>
               <div className="flex items-center gap-3">
                 {prevWork.logo && (
                   <Image
@@ -189,12 +146,8 @@ export default function WorkDetailPage({ params }: Props) {
             </Link>
           )}
 
-          {/* Next Work */}
           {nextWork && (
-            <Link
-              href={`/works/${nextWork.slug}`}
-              className="flex items-center gap-4 group"
-            >
+            <Link href={`/works/${nextWork.slug}`} className="flex items-center gap-4 group">
               <div className="flex items-center gap-3">
                 {nextWork.logo && (
                   <Image
@@ -210,53 +163,21 @@ export default function WorkDetailPage({ params }: Props) {
                   <h3 className="text-lg font-semibold">{nextWork.title}</h3>
                 </div>
               </div>
-              <span className="text-3xl transition-transform group-hover:translate-x-1">
-                →
-              </span>
+              <span className="text-3xl transition-transform group-hover:translate-x-1">→</span>
             </Link>
           )}
         </div>
       </section>
 
-      {/* Lightbox Clean (image + video, klik backdrop close + animasi fade) */}
+      {/* Lightbox */}
       <Lightbox
         open={open}
         close={() => setOpen(false)}
         index={index}
         slides={slides}
+        animation={{ fade: 300, swipe: 0 }}
+        controller={{ closeOnBackdropClick: true }} // ✅ klik di luar bisa close
         toolbar={{ buttons: [] }}
-        animation={{ fade: 300, swipe: 0 }} // 🔥 animasi fade in/out
-        render={{
-          slide: ({ slide }) => {
-            const s = slide as CustomSlide;
-            return (
-              <div
-                className="w-full h-full flex items-center justify-center"
-                onClick={(e) => {
-                  if (e.target === e.currentTarget) setOpen(false);
-                }}
-              >
-                {s.src.endsWith(".mp4") ? (
-                  <video
-                    src={s.src}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    controls={false}
-                    className="max-w-[90%] max-h-[90%] object-contain"
-                  />
-                ) : (
-                  <img
-                    src={s.src}
-                    alt=""
-                    className="max-w-[90%] max-h-[90%] object-contain"
-                  />
-                )}
-              </div>
-            );
-          },
-        }}
       />
     </div>
   );
