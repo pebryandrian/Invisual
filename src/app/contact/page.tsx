@@ -57,11 +57,11 @@ export default function ContactSection() {
           </div>
 
           {/* BUSINESS + JOBS */}
-          <div className="grid md:grid-cols-2 gap-10 md:ml-80 flex-1">
+          <div className="grid md:grid-cols-2 gap-10 md:ml-20 flex-1">
             {/* BUSINESS */}
             <div>
               <h4 className="font-semibold text-lg md:text-2xl mb-2">Business</h4>
-              <p className="leading-relaxed mb-8 text-base md:w-120 md:text-2xl">
+              <p className="leading-relaxed mb-8 text-base md:text-2xl">
                 For inquiries regarding new business, please send us a summary of your
                 project and we will contact you shortly. We will assist you in
                 collaborating and translating your project. Please send your project
@@ -78,12 +78,12 @@ export default function ContactSection() {
             {/* JOBS */}
             <div>
               <h4 className="font-semibold text-lg md:text-2xl mb-2">Jobs</h4>
-              <p className="leading-relaxed text-base md:w-120 md:text-2xl">
+              <p className="leading-relaxed text-base md:text-2xl">
                 At Invisual Studio, we&apos;re more than just coworkers, we&apos;re a
                 team. From strategists and developers to artists, musicians, and chefs,
                 our team thrives on creativity and collaboration.
               </p>
-              <p className="leading-relaxed mt-10 text-base md:w-120 md:text-2xl">
+              <p className="leading-relaxed mt-10 text-base md:text-2xl">
                 We&apos;re looking for passionate people who are ready to take on
                 fulltime challenges. Send your portfolio to the email below, using this
                 subject line format:

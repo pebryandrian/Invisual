@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // kalau kamu pakai SQLite, kalau pakai PostgreSQL ganti jadi "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Work {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  title       String
+  category    String
+  image       String
+  logo        String?
+  description String?
+  year        Int?
+  industry    String?
+  scope       String?
+  team        String?
+  gallery     String?
+
+  // 🆕 Timestamp otomatis
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

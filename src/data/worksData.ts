@@ -97,7 +97,7 @@ export const worksData: Work[] = [
     category: "Food & Beverage",
     industry: "Retail & Service",
     image: "/images/works/asian/asian hero.webp",
-    logo: "/images/clients/ASIAN MOOD.jpg", // ✅ tambahkan logo
+    logo: "/images/clients/ASIAN MOOD.jpg", 
     description:
       "Asian Mood is a restaurant that offers a variety of Southeast Asian food in one experience. In its rebranding, Asian Mood keeps the identity of the old logo through the elephant mascot, but with a new touch that's more expressive and adorable. This elephant mascot is a friendly and recognizable icon, reflecting the strength of tradition and the warmth of the atmosphere. The visual branding combines playful illustrative characters with modern design elements, creating a unique blend of professionalism and cheerfulness.",
     year: 2025,
@@ -125,7 +125,7 @@ export const worksData: Work[] = [
     image: "/images/works/soar/soar hero.mp4",
     logo: "/images/clients/SOAR.JPG",
     description:
-      "SOAR Collective is a creative event platform focused on collaboration...",
+      "The process of creating SOAR COLLECTIVE began with extensive research and ideation, drawing inspiration from trends in music, art, and fashion to define a unique concept centered on a “Unified Sensory Experience.",
     year: 2024,
     scope: ["Event Branding"],
     team: [
@@ -150,7 +150,7 @@ export const worksData: Work[] = [
     category: "Sport",
     industry: "Sport",
     image: "/images/works/kona/kona hero.jpg",
-    logo: "/images/clients/KONA.webp", // ✅ tambahkan logo
+    logo: "/images/clients/KONA.webp", 
     description:
       "More than just a logo or mascot, this branding creates a story. One where players, fans, and the wider community can see themselves reflected. It's about building connections, strengthening spirit, and encouraging growth within padel culture.In the end, KONA Padel Club represents a fresh, cartoon-inspired identity that blends the joy of play with a competitive spirit. It’s not just a brand, but a stage where energy, creativity, and teamwork come together to forge a lasting legacy in the padel scene.",
     year: 2025,
@@ -175,9 +175,9 @@ export const worksData: Work[] = [
     category: "Food & Beverages",
     industry: "Food & Beverages",
     image: "/images/works/grizzle/grizzle hero.jpg",
-    logo: "/images/clients/GRIZZLE.png", // ✅ tambahkan logo
+    logo: "/images/clients/GRIZZLE.png", 
     description:
-      "From day one, we knew Grizzle had to be more than just tasty food...",
+      "From day one, we knew Grizzle had to be more than just tasty food. It had to be memorable, fun, and recognizable. And now, with every burger box, apron, and Instagram post, Grizzle proudly holds its position as a heartwarming food brand that doesn't take itself too seriously but still serves up warmth.",
     year: 2023,
     scope: ["Branding"],
     team: [
@@ -201,7 +201,7 @@ export const worksData: Work[] = [
     category: "Fashion",
     industry: "Fashion",
     image: "/images/works/beau/beau hero.png",
-    logo: "/images/clients/BEAU.jpg", // ✅ tambahkan logo
+    logo: "/images/works/beau/beau.webp", 
     description:
       "At Beau Vossa, we believe that fashion is not just about clothing, but also a powerful expression of who you are. Positioning ourselves as an apparel brand with a philosophy of modern minimalism. A clean and understated visual identity reflects the essence of functionality and simple aesthetics, yet remains relevant and classy. Beau Vossa offers clothing that is easy to mix and match, comfortable, and timeless.",
     year: 2024,
@@ -228,7 +228,7 @@ export const worksData: Work[] = [
     category: "Construction",
     industry: "Construction",
     image: "/images/works/forge/forge hero.mp4",
-    logo: "/images/clients/FORGE.jpg", // ✅ tambahkan logo
+    logo: "/images/works/forge/forge.webp", 
     description:
       "ForgePoint is a forward-thinking construction company that specializes in delivering innovative and sustainable building solutions. The goal of this project was to design a professional, user-friendly, and visually engaging corporate website that highlights the company’s expertise, values, and services while appealing to industry stakeholders, investors, and clients.",
     year: 2024,
@@ -255,7 +255,7 @@ export const worksData: Work[] = [
     category: "Real Estate",
     industry: "Real Estate",
     image: "/images/works/krom/krom hero.jpg",
-    logo: "/images/clients/KROM.jpg", // ✅ tambahkan logo
+    logo: "/images/clients/KROM.jpg", 
     description:
       "KROM Estate is a company engaged in property and consulting with an identity focused on professionalism and clarity. KROM Estate's branding is designed to convey a modern, minimalist, and elegant impression. It reflects the values of transparency, trust, and assertiveness. The visual identity combines solid typography with a neutral and bold color palette, creating a brand representation that is both stable and relevant to today's property industry.",
     year: 2024,
@@ -281,7 +281,7 @@ export const worksData: Work[] = [
     category: "Food & Beverages",
     industry: "Food & Beverages",
     image: "/images/works/marrie/marrie hero.jpg",
-    logo: "/images/clients/MARRIE.jpg", // ✅ tambahkan logo
+    logo: "/images/works/marrie/marrie.webp", 
     description:
       "Marrie Tea is a handmade tea brand inspired by stories and nature. Inspired by warm and cozy rural life, each tea is represented by an animal character painted in watercolor, living in the countryside, inviting tea lovers to enter their world. To create an immersive tea brand identity that feels like a storybook, cozy, captivating, and visually memorable, with packaging that is appealing, especially for gift-giving and quiet rituals.",
     year: 2024,
@@ -308,9 +308,9 @@ export const worksData: Work[] = [
     category: "Food & Beverages",
     industry: "Entertainment",
     image: "/images/works/keyzle/keyzle hero.jpg",
-    logo: "/images/clients/KEYZLE.jpg", // ✅ tambahkan logo
+    logo: "/images/clients/KEYZLE.jpg", 
     description:
-      "Keyzle represents boldness and creativity...",
+      "Keyzle's visual identity is reinforced by a logo in the shape of the letter K, arranged to resemble puzzle pieces, emphasizing the concept of interconnectedness. Playful colors were chosen to convey a fun, cheerful, and recognizable impression. To add character, Keyzle also features a mascot in the form of puzzle pieces and key chains, representing a brand that is friendly, expressive, and close to its users.",
     year: 2024,
     scope: ["Branding"],
     team: [
@@ -334,7 +334,7 @@ export const worksData: Work[] = [
     category: "Personal Care Service",
     industry: "Entertainment",
     image: "/images/works/krown/krown hero.png",
-    logo: "/images/clients/KROWN.jpg", // ✅ tambahkan logo
+    logo: "/images/clients/KROWN.jpg", 
     description:
       "Krown Barbershop combines the essence of vintage charm with contemporary elegance. Inspired by the golden age of gentlemanly elegance, the brand's identity seamlessly blends classic elements with modern touches.  Through meticulous design, carefully considered typography, and authentic aesthetics, from the logo to the brand application, every element is designed to reflect heritage, trust, and style.",
     year: 2024,
@@ -361,10 +361,10 @@ export const worksData: Work[] = [
     category: "Food & Beverages",
     industry: "Food & Beverages",
     image: "/images/works/sunddae/sunddae hero.jpg",
-    logo: "/images/clients/SUNDDAE.jpg", // ✅ tambahkan logo
+    logo: "/images/clients/SUNDDAE.jpg", 
     description:
-      "Attractive coffee cup packaging design...",
-    year: 2023,
+      "This project aims to design attractive coffee cup packaging that is rich in cultural value, inspired by Japanese aesthetics and taste. The main objective is to create packaging that not only reflects the authenticity of Japanese culture but also enriches the coffee drinking experience through visual narratives.",
+    year: 2025,
     scope: ["Packaging Design"],
     team: [
       "Jo (Art Director)",

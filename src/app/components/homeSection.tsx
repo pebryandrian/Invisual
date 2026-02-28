@@ -15,8 +15,6 @@ export default function HomeSection() {
           loop
           playsInline
         />
-        {/* Overlay transparan tipis */}
-        <div className="absolute inset-0 bg-black/20 dark:bg-black/40" />
       </section>
 
       {/* Text Section */}

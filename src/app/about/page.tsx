@@ -13,7 +13,6 @@ const teamMembers = [
   { name: "Sofwan Hidayat", role: "Strategic Director", image: "/images/team/p5.webp" },
   { name: "Jo", role: "Art Director", image: "/images/team/p6.webp" },
   { name: "Metha", role: "Project Manager", image: "/images/team/p7.webp" },
-  { name: "Aldo Sugih Prayogo", role: "Human Resource", image: "/images/team/p8.webp" },
 ];
 
 const TESTIMONIALS = [
@@ -77,74 +76,106 @@ useEffect(() => {
 
   return (
     <div className="bg-background text-foreground">
-      {/* Banner */}
-      <section className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
-        <p className="text-xl md:text-2xl font-semibold">Foto Studio</p>
-      </section>
+{/* Banner */}
+<section className="relative w-full bg-black flex items-center justify-center">
+  <div className="relative w-full 
+    h-[70vh] 
+    sm:h-[80vh] 
+    lg:h-screen
+    max-w-[1920px]"
+  >
+    <Image
+      src="/images/team/group.png"
+      alt="Invisual Team"
+      fill
+      priority
+      sizes="100vw"
+      className="object-contain"
+    />
+  </div>
+</section>
 
       {/* About Content */}
-      <section className="max-w-full md:ml-12 mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
-        <div className="bg-gray-300 dark:bg-gray-700 flex items-center justify-center aspect-[4/3] rounded-xl">
-          <p className="text-lg font-medium">Studio Activity or GIF</p>
+<section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-16 items-center">
+
+        {/* Logo / Iris */}
+        <div className="flex justify-center md:justify-start">
+          <div className="relative w-90 md:w-120 aspect-square">
+            <Image
+              src="/images/team/LogoInvi.png"
+              alt="Invisual Identity"
+              fill
+              className="object-contain opacity-90"
+            />
+          </div>
         </div>
-        <div className="flex flex-col md:mx-20 md:mt-10 font-semibold space-y-6">
-          <p className="text-xl md:text-4xl leading-relaxed">
+
+        {/* Text */}
+        <div className="space-y-6 text-gray-300 text-2xl leading-relaxed">
+          <p>
             We are a multidisciplinary team made up of creatives, strategists,
             and makers who bring different perspectives to the table. From
-            design and development to writing, strategy, and storytelling, our
-            backgrounds are diverse, but our passion is shared.
+            design and development to writing, strategy, and storytelling,
+            our backgrounds are diverse, but our passion is shared.
           </p>
-          <p className="text-xl md:text-4xl leading-relaxed">
+          <p>
             For us, work is more than tasks, it&apos;s about creating impact,
-            solving problems, and enjoying the process together as a close-knit
-            team.
+            solving problems, and enjoying the process together as a
+            close-knit team.
           </p>
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="max-w-full mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-10 justify-items-center">
-          <AnimatePresence>
-            {displayedTeam.map((person, idx) => (
-              <motion.div
-                key={person.name}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 30 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="flex flex-col items-center text-center space-y-4"
-              >
-                <div className="relative w-40 h-40 sm:w-44 sm:h-44 lg:w-48 lg:h-48 overflow-hidden rounded-xl shadow-md bg-gray-300 dark:bg-gray-700">
-                  <Image
-                    src={person.image}
-                    alt={person.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 160px, (max-width: 1024px) 176px, 192px"
-                  />
-                </div>
-                <div>
-                  <p className="font-semibold text-lg">{person.name}</p>
-                  <p className="text-sm text-muted-foreground">{person.role}</p>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {!showAll && (
-          <div className="flex justify-center mt-10">
-            <button
-              onClick={() => setShowAll(true)}
-              className="p-2 rounded-full hover:bg-muted transition"
-              aria-label="Lihat lebih banyak anggota tim"
-            >
-              <ChevronDown className="w-8 h-8 text-muted-foreground animate-bounce" />
-            </button>
+      
+{/* Team Section */}
+<section className="max-w-full mx-auto px-6 py-16">
+  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+    <AnimatePresence>
+      {displayedTeam.map((person, idx) => (
+        <motion.div
+          key={person.name}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.4, delay: idx * 0.05 }}
+          className="flex flex-col w-full"
+        >
+          {/* Biarkan gambar mengikuti rasio aslinya */}
+          <div
+            className="relative w-full overflow-hidden"
+          >
+            <Image
+              src={person.image}
+              alt={person.name}
+              width={500} // bisa diubah sesuai resolusi aslinya
+              height={500}
+            />
           </div>
-        )}
-      </section>
+
+          {/* Nama & Role */}
+          <div className="bg-black text-white px-3 py-2 text-center">
+            <p className="font-semibold text-base leading-tight">{person.name}</p>
+            <p className="text-sm opacity-80">{person.role}</p>
+          </div>
+        </motion.div>
+      ))}
+    </AnimatePresence>
+  </div>
+
+  {/* Tombol Load More */}
+  {displayedTeam.length < teamMembers.length && (
+    <div className="flex justify-center mt-8">
+      <button
+        onClick={() => setShowAll(true)}
+        className="p-2 rounded-full hover:bg-muted transition"
+        aria-label="Lihat lebih banyak anggota tim"
+      >
+        <ChevronDown className="w-8 h-8 text-muted-foreground animate-bounce" />
+      </button>
+    </div>
+  )}
+</section>
+
 
       {/* Services Section */}
       <section className="max-w-full mx-auto px-6 py-16">

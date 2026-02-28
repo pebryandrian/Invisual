@@ -74,9 +74,9 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-lg">Head Office</h4>
             <p className="text-base mt-2">
-              Jl. Malangbong Raya Blok C10, <br />
+              Jl. Malangbong Raya Blok , <br />
               Antapani Wetan, Antapani, <br />
-              Bandung City, West Java 40291
+              
             </p>
           </div>
         </div>
