@@ -8,7 +8,7 @@ const clients = [
     name: "Casa",
     service: "Branding & Illustration",
     industry: "Beauty",
-    logo: "/images/clients/casa.jpg",
+    logo: "/images/clients/CASA.jpg",
   },
   {
     id: 2,
@@ -43,7 +43,7 @@ const clients = [
     name: "Imasa",
     service: "Branding",
     industry: "Fashion",
-    logo: "/images/clients/imasa.jpg",
+    logo: "/images/clients/IMASA.jpg",
   },
   {
     id: 7,
@@ -64,14 +64,14 @@ const clients = [
     name: "Keyzle",
     service: "Brand identity & product design",
     industry: "Retail",
-    logo: "/images/clients/Keyzle.jpg",
+    logo: "/images/clients/KEYZLE.jpg",
   },
   {
     id: 10,
     name: "Xyncema",
     service: "Branding",
     industry: "ICT Business",
-    logo: "/images/clients/Xyncema.jpg",
+    logo: "/images/clients/XYNCEMA.jpg",
   },
 
   // ➕ Tambahan baru
